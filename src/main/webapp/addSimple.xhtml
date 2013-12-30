@@ -6,7 +6,7 @@
 	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<h:form id="personform">
-
+			
 			<p:panel id="panel" header="#{msg.addCar}">
 
 				<h:panelGrid columns="3">
@@ -26,24 +26,26 @@
 					<p:message for="lastName" id="msgLastName"></p:message>
 
 					<h:outputLabel for="yob" value="#{msg.yob}" />
-					<p:inputMask id="yob" value="#{carBean.car.yob}" mask="99/99/9999">
-
+					<p:inputMask id="yob" value="#{carBean.car.yob}" mask="99/99/9999"
+						validator="#{carBean.yobValidator}">
+						<f:ajax execute="@this" render="msgYob" event="blur"/>
 					</p:inputMask>
 					<p:message for="yob" id="msgYob"></p:message>
 
 
 					<h:outputLabel for="vin" value="#{msg.vin}" />
 					<p:inputText id="vin" value="#{carBean.car.vin}"
-						validatorMessage="Numer vin musi zawierac 11 znakow">
+						validator="#{carBean.uniqueVin}">
 						<p:ajax update="msgVin" event="blur" />
 					</p:inputText>
 					<p:message for="vin" id="msgVin"></p:message>
 
 					<h:outputLabel for="idNumber" value="#{msg.idNumber}" />
 					<p:inputText id="idNumber" value="#{carBean.car.idNumber}"
-						validatorMessage="Numer pesel musi zawierac 11 znakow">
-						<p:ajax update="msgIdNumber" event="blur"
-							listener="#{carBean.idNumberValidate}" />
+						validator="#{carBean.idNumberValidate}" >
+
+						<f:validator validatorId="idNumberValidator"></f:validator>
+						<f:ajax execute="@this" render="msgIdNumber"  event="blur"/>
 					</p:inputText>
 					<p:message for="idNumber" id="msgIdNumber"></p:message>
 
@@ -77,14 +79,25 @@
 						<p:message for="hp" id="msgHp" showDetail="true"></p:message>
 					</h:panelGrid>
 
+
+
 				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-top:100px">
+					<h:outputLabel for="agree" value="#{msg.agree}" />
+					<p:selectBooleanCheckbox value="#{carBean.car.agree}" />
+				</h:panelGrid>
+
+				<h:panelGrid>
+					<h:messages id="messages" showDetail="#{true}"
+						showSummary="#{false}" />
+				</h:panelGrid>
+
 
 				<h:commandButton value="#{msg.carFormOKButton}"
 					action="#{carBean.addCar}" />
 
-				<h:panelGrid>
-					<h:messages showDetail="#{true}" showSummary="#{false}" />
-				</h:panelGrid>
+
 
 			</p:panel>
 		</h:form>

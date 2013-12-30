@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -24,6 +25,7 @@ public class Car {
 	private String mark = "";
 	private int hp;
 	private double volume;
+	private boolean agree;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -74,7 +76,6 @@ public class Car {
 		this.vin = vin;
 	}
 
-	@Pattern(regexp = "[0-9]{11}")
 	@NotNull
 	public String getIdNumber() {
 		return idNumber;
@@ -118,5 +119,15 @@ public class Car {
 	public void setVolume(double volume) {
 		this.volume = volume;
 	}
+	
+	@AssertTrue
+	public boolean isAgree() {
+		return agree;
+	}
 
+	public void setAgree(boolean agree) {
+		this.agree = agree;
+	}
+
+	
 }
