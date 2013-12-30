@@ -6,47 +6,100 @@
 	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<h:form id="personform">
-			<h:panelGrid columns="2">
-				
-				<h:outputText value="#{msg.firstName}" />
-				<p:inputText id="firstName" value="#{carBean.car.firstName}" />
-				
-				<h:outputText value="#{msg.lastName}" />
-				<p:inputText id="lastName" value="#{carBean.car.lastName}" />
-				
-				<h:outputText value="#{msg.idNumber}" />
-				<p:inputText id="idNumber" value="#{carBean.car.idNumber}" />
-				
-				<h:outputText value="#{msg.yob}" />
-				<p:calendar id="cal1" value="#{carBean.car.yob}" navigator="true" display="inline" pattern="MM/dd/yyyy" yearRange="1900:2015"/>
-				
-				<h:outputText value="#{msg.vin}" />
-				<p:inputText id="vin" value="#{carBean.car.vin}" />
-				
-				<h:outputText value="#{msg.carNameLabel}" />
-				<p:inputText id="name" value="#{carBean.car.name}" />
-				
-				<h:outputText value="#{msg.carMarkLabel}" />
-				<p:inputText id="mark" value="#{carBean.car.mark}" />
+			
+			<p:panel id="panel" header="#{msg.addCar}">
 
-				<h:outputText value="#{msg.carHp}" />
-				<h:panelGrid columns="1" style="margin-bottom:10px">
-					<p:inputText id="txt1" value="#{carBean.car.hp}" />
-					<p:slider for="txt1" minValue="1" maxValue="1100" />
+				<h:panelGrid columns="3">
+
+					<h:outputLabel for="firstName" value="#{msg.firstName}" />
+					<p:inputText id="firstName" value="#{carBean.car.firstName}"
+						validatorMessage="Imie musi zaczynac sie od wielkiej litery">
+						<p:ajax update="msgFirstName" event="blur" />
+					</p:inputText>
+					<p:message for="firstName" id="msgFirstName"></p:message>
+
+					<h:outputLabel for="lastName" value="#{msg.lastName}" />
+					<p:inputText id="lastName" value="#{carBean.car.lastName}"
+						validatorMessage="Nazwisko musi zaczynac sie od wielkiej litery">
+						<p:ajax update="msgLastName" event="blur" />
+					</p:inputText>
+					<p:message for="lastName" id="msgLastName"></p:message>
+
+					<h:outputLabel for="yob" value="#{msg.yob}" />
+					<p:inputMask id="yob" value="#{carBean.car.yob}" mask="99/99/9999"
+						validator="#{carBean.yobValidator}">
+						<f:ajax execute="@this" render="msgYob" event="blur"/>
+					</p:inputMask>
+					<p:message for="yob" id="msgYob"></p:message>
+
+
+					<h:outputLabel for="vin" value="#{msg.vin}" />
+					<p:inputText id="vin" value="#{carBean.car.vin}"
+						validator="#{carBean.uniqueVin}">
+						<p:ajax update="msgVin" event="blur" />
+					</p:inputText>
+					<p:message for="vin" id="msgVin"></p:message>
+
+					<h:outputLabel for="idNumber" value="#{msg.idNumber}" />
+					<p:inputText id="idNumber" value="#{carBean.car.idNumber}"
+						validator="#{carBean.idNumberValidate}" >
+
+						<f:validator validatorId="idNumberValidator"></f:validator>
+						<f:ajax execute="@this" render="msgIdNumber"  event="blur"/>
+					</p:inputText>
+					<p:message for="idNumber" id="msgIdNumber"></p:message>
+
+					<h:outputLabel for="name" value="#{msg.name}" />
+					<p:inputText id="name" value="#{carBean.car.name}"
+						validatorMessage="Nazwa jest za krotka...">
+						<f:validateLength minimum="2" />
+						<p:ajax update="msgName" event="blur" />
+					</p:inputText>
+					<p:message for="name" id="msgName"></p:message>
+
+					<h:outputLabel for="mark" value="#{msg.mark}" />
+					<p:inputText id="mark" value="#{carBean.car.mark}"
+						validatorMessage="Marka musi zaczynac sie z wielkiej litery">
+						<f:validateRegex pattern="[A-Z][a-z]*" />
+						<p:ajax update="msgMark" event="blur" />
+					</p:inputText>
+					<p:message for="mark" id="msgMark"></p:message>
+
+					<h:outputLabel for="volume" value="#{msg.volume}" />
+					<p:inputText id="volume" value="#{carBean.car.volume}"
+						validatorMessage="Pojemnosc musi byc od 0.1 do 12">
+						<p:ajax update="msgVolume" event="blur" />
+					</p:inputText>
+					<p:message for="volume" id="msgVolume"></p:message>
+
+					<h:outputLabel for="hp" value="#{msg.hp}" />
+					<h:panelGrid columns="1" style="margin-bottom:10px">
+						<p:inputText id="hp" value="#{carBean.car.hp}" />
+						<p:slider for="hp" />
+						<p:message for="hp" id="msgHp" showDetail="true"></p:message>
+					</h:panelGrid>
+
+
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-top:100px">
+					<h:outputLabel for="agree" value="#{msg.agree}" />
+					<p:selectBooleanCheckbox value="#{carBean.car.agree}" />
+				</h:panelGrid>
+
+				<h:panelGrid>
+					<h:messages id="messages" showDetail="#{true}"
+						showSummary="#{false}" />
 				</h:panelGrid>
 
 
-				<h:outputText value="#{msg.endSecure}" />
-				<p:calendar id="cal" value="#{carBean.car.endSecure}" navigator="true" display="inline" />  
-				
-			</h:panelGrid>
+				<h:commandButton value="#{msg.carFormOKButton}"
+					action="#{carBean.addCar}" />
 
-			<h:commandButton value="#{msg.carFormOKButton}"
-				action="#{carBean.addCar}" />
 
-			<h:panelGrid>
-				<h:messages showDetail="#{true}" showSummary="#{false}" />
-			</h:panelGrid>
+
+			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>

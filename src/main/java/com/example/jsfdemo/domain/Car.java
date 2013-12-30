@@ -1,20 +1,15 @@
 package com.example.jsfdemo.domain;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -23,13 +18,14 @@ public class Car {
 	private Long id;
 	private String firstName = "";
 	private String lastName = "";
-	private Date yob;
+	private String yob;
 	private String vin = "";
-	private Long idNumber;
+	private String idNumber;
 	private String name = "";
 	private String mark = "";
-	private Date endSecure;
 	private int hp;
+	private double volume;
+	private boolean agree;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,8 +37,8 @@ public class Car {
 		this.id = id;
 	}
 
-	@NotNull(message = "Uzupelnij pola!")
-	@Pattern(regexp = "[A-Z][a-z]*", message = "Imie musi zaczynac sie z wielkiej litery")
+	@Pattern(regexp = "[A-Z][a-z]*")
+	@NotNull
 	public String getFirstName() {
 		return firstName;
 	}
@@ -51,8 +47,8 @@ public class Car {
 		this.firstName = firstName;
 	}
 
-	@NotNull(message = "Uzupelnij pola!")
-	@Pattern(regexp = "[A-Z][a-z]*", message = "Nazwisko musi zaczynac sie z wielkiej litery")
+	@Pattern(regexp = "[A-Z][a-z]*[-]*[a-z]*")
+	@NotNull
 	public String getLastName() {
 		return lastName;
 	}
@@ -61,19 +57,17 @@ public class Car {
 		this.lastName = lastName;
 	}
 
-	@NotNull(message = "Uzupelnij pola!")
-	@Past(message = "Data musi byc z przeszlosc")
-	@Temporal(TemporalType.DATE)
-	public Date getYob() {
+	@NotNull
+	public String getYob() {
 		return yob;
 	}
 
-	public void setYob(Date yob) {
+	public void setYob(String yob) {
 		this.yob = yob;
 	}
 
-	@NotNull(message = "Uzupelnij pola!")
 	@Pattern(regexp = "[0-9]{11}", message = "Numer vin musi miec 11 cyfr")
+	@NotNull
 	public String getVin() {
 		return vin;
 	}
@@ -82,16 +76,15 @@ public class Car {
 		this.vin = vin;
 	}
 
-	@NotNull(message = "Uzupelnij pola!")
-	public Long getIdNumber() {
+	@NotNull
+	public String getIdNumber() {
 		return idNumber;
 	}
 
-	public void setIdNumber(Long idNumber) {
+	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
 
-	@NotNull(message = "Uzupelnij pola!")
 	public String getName() {
 		return name;
 	}
@@ -100,7 +93,6 @@ public class Car {
 		this.name = name;
 	}
 
-	@NotNull(message = "Uzupelnij pola!")
 	public String getMark() {
 		return mark;
 	}
@@ -109,20 +101,6 @@ public class Car {
 		this.mark = mark;
 	}
 
-	@NotNull(message = "Uzupelnij pola!")
-	@Future(message = "Data musi byc z przeszloci")
-	@Temporal(TemporalType.DATE)
-	public Date getEndSecure() {
-		return endSecure;
-	}
-
-	public void setEndSecure(Date endSecure) {
-		this.endSecure = endSecure;
-	}
-
-	@NotNull(message = "Uzupelnij pola!")
-	@Min(10)
-	@Max(1000)
 	public int getHp() {
 		return hp;
 	}
@@ -131,4 +109,25 @@ public class Car {
 		this.hp = hp;
 	}
 
+	@DecimalMin("0.1")
+	@DecimalMax("12.0")
+	@NotNull
+	public double getVolume() {
+		return volume;
+	}
+
+	public void setVolume(double volume) {
+		this.volume = volume;
+	}
+	
+	@AssertTrue
+	public boolean isAgree() {
+		return agree;
+	}
+
+	public void setAgree(boolean agree) {
+		this.agree = agree;
+	}
+
+	
 }
