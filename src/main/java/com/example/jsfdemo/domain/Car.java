@@ -37,7 +37,7 @@ public class Car {
 		this.id = id;
 	}
 
-	@Pattern(regexp = "[A-Z][a-z]*")
+	@Pattern(regexp = "[A-Z][a-z][a-z]*")
 	@NotNull
 	public String getFirstName() {
 		return firstName;
@@ -47,7 +47,7 @@ public class Car {
 		this.firstName = firstName;
 	}
 
-	@Pattern(regexp = "[A-Z][a-z]*[-]*[a-z]*")
+	@Pattern(regexp = "[A-Z][a-z]*([-]*[A-Z][a-z][a-z]*)?")
 	@NotNull
 	public String getLastName() {
 		return lastName;
@@ -66,7 +66,7 @@ public class Car {
 		this.yob = yob;
 	}
 
-	@Pattern(regexp = "[0-9]{11}", message = "Numer vin musi miec 11 cyfr")
+
 	@NotNull
 	public String getVin() {
 		return vin;

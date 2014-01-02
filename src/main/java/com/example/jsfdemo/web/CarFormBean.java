@@ -1,7 +1,6 @@
 package com.example.jsfdemo.web;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -11,12 +10,9 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.model.ListDataModel;
-import javax.faces.validator.FacesValidator;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import org.primefaces.event.SlideEndEvent;
 
 import com.example.jsfdemo.domain.Car;
 import com.example.jsfdemo.service.CarManagerDateBase;
@@ -104,7 +100,8 @@ public class CarFormBean implements Serializable {
 				}
 			}
 		} else {
-			FacesMessage message = new FacesMessage("Vin musi posiadac 11 cyfr");
+			FacesMessage message = new FacesMessage(
+					"Vin musi posiadac 11 cyfr, a podałes:" + vin.length());
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(message);
 		}
@@ -144,9 +141,7 @@ public class CarFormBean implements Serializable {
 				|| !yearID.equals(yearYob)) {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(form.getClientId(), new FacesMessage(
-					"Nie pasuje!" + monthID + "  " + monthYob + "\n" + dayID
-							+ " " + dayYob + "\n" + yearID + "  " + yearYob
-							+ "|"));
+					"Nie pasuje!"));
 			context.renderResponse();
 		}
 

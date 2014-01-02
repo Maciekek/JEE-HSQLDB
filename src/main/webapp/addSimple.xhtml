@@ -6,7 +6,7 @@
 	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<h:form id="personform">
-			
+			<f:event listener="#{carBean.idNumberValidateEnd}" type="postValidate" />
 			<p:panel id="panel" header="#{msg.addCar}">
 
 				<h:panelGrid columns="3">
