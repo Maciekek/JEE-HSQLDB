@@ -6,7 +6,8 @@
 	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<h:form id="personform">
-			<f:event listener="#{carBean.idNumberValidateEnd}" type="postValidate" />
+			<f:event listener="#{carBean.idNumberValidateEnd}"
+				type="postValidate" />
 			<p:panel id="panel" header="#{msg.addCar}">
 
 				<h:panelGrid columns="3">
@@ -28,7 +29,7 @@
 					<h:outputLabel for="yob" value="#{msg.yob}" />
 					<p:inputMask id="yob" value="#{carBean.car.yob}" mask="99/99/9999"
 						validator="#{carBean.yobValidator}">
-						<f:ajax execute="@this" render="msgYob" event="blur"/>
+						<f:ajax execute="@this" render="msgYob" event="blur" />
 					</p:inputMask>
 					<p:message for="yob" id="msgYob"></p:message>
 
@@ -42,10 +43,10 @@
 
 					<h:outputLabel for="idNumber" value="#{msg.idNumber}" />
 					<p:inputText id="idNumber" value="#{carBean.car.idNumber}"
-						validator="#{carBean.idNumberValidate}" >
+						validator="#{carBean.idNumberValidate}">
 
 						<f:validator validatorId="idNumberValidator"></f:validator>
-						<f:ajax execute="@this" render="msgIdNumber"  event="blur"/>
+						<f:ajax execute="@this" render="msgIdNumber" event="blur" />
 					</p:inputText>
 					<p:message for="idNumber" id="msgIdNumber"></p:message>
 
@@ -78,11 +79,19 @@
 						<p:slider for="hp" />
 						<p:message for="hp" id="msgHp" showDetail="true"></p:message>
 					</h:panelGrid>
-
-
-
+					<h:panelGrid></h:panelGrid>
+					
+					<h:outputLabel for="registration" value="#{msg.registration}" />
+					<h:panelGrid columns="1" style="margin-bottom:10px">
+						
+						<p:calendar id="registration" value="#{carBean.car.registration}"
+							navigator="true" display="inline" >
+						<p:ajax update="msgRegistration" event="dateSelect"  />  
+						</p:calendar>
+					</h:panelGrid>
+					<p:message for="registration" id="msgRegistration" showDetail="true"></p:message>
+				
 				</h:panelGrid>
-
 				<h:panelGrid columns="1" style="margin-top:100px">
 					<h:outputLabel for="agree" value="#{msg.agree}" />
 					<p:selectBooleanCheckbox value="#{carBean.car.agree}" />
@@ -96,9 +105,6 @@
 
 				<h:commandButton value="#{msg.carFormOKButton}"
 					action="#{carBean.addCar}" />
-
-
-
 			</p:panel>
 		</h:form>
 	</ui:define>
