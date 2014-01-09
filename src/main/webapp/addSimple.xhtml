@@ -13,8 +13,7 @@
 				<h:panelGrid columns="3">
 
 					<h:outputLabel for="firstName" value="#{msg.firstName}" />
-					<p:inputText id="firstName" value="#{carBean.car.firstName}"
-						validatorMessage="Imie musi zaczynac sie od wielkiej litery">
+					<p:inputText id="firstName" value="#{carBean.car.firstName}">
 						<p:ajax update="msgFirstName" event="blur" />
 					</p:inputText>
 					<p:message for="firstName" id="msgFirstName"></p:message>
@@ -45,7 +44,7 @@
 					<p:inputText id="idNumber" value="#{carBean.car.idNumber}"
 						validator="#{carBean.idNumberValidate}">
 
-						<f:validator validatorId="idNumberValidator"></f:validator>
+
 						<f:ajax execute="@this" render="msgIdNumber" event="blur" />
 					</p:inputText>
 					<p:message for="idNumber" id="msgIdNumber"></p:message>
@@ -75,24 +74,35 @@
 
 					<h:outputLabel for="hp" value="#{msg.hp}" />
 					<h:panelGrid columns="1" style="margin-bottom:10px">
-						<p:inputText id="hp" value="#{carBean.car.hp}" />
+						<p:inputText id="hp" value="#{carBean.car.hp}"
+							validatorMessage="Za duzo mocy..." />
 						<p:slider for="hp" />
-						<p:message for="hp" id="msgHp" showDetail="true"></p:message>
+						<p:message for="hp" id="msgHp"></p:message>
 					</h:panelGrid>
 					<h:panelGrid></h:panelGrid>
-					
+
 					<h:outputLabel for="registration" value="#{msg.registration}" />
 					<h:panelGrid columns="1" style="margin-bottom:10px">
-						
+
 						<p:calendar id="registration" value="#{carBean.car.registration}"
-							navigator="true" display="inline" >
-						<p:ajax update="msgRegistration" event="dateSelect"  />  
+							navigator="true" display="inline">
+							<p:ajax update="msgRegistration" event="dateSelect" />
 						</p:calendar>
 					</h:panelGrid>
-					<p:message for="registration" id="msgRegistration" showDetail="true"></p:message>
-				
+					<p:message for="registration" id="msgRegistration"
+						showDetail="true"></p:message>
+
+					<h:outputLabel for="pin" value="#{msg.pin}" />
+					<p:inputText id="pin" value="#{carBean.car.pin}">
+
+						<f:validator validatorId="pinValidator"></f:validator>
+						<f:ajax execute="@this" render="msgPin" event="blur" />
+					</p:inputText>
+					<p:message for="pin" id="msgPin"></p:message>
+
+
 				</h:panelGrid>
-				<h:panelGrid columns="1" style="margin-top:100px">
+				<h:panelGrid columns="1" style="margin-top:50px">
 					<h:outputLabel for="agree" value="#{msg.agree}" />
 					<p:selectBooleanCheckbox value="#{carBean.car.agree}" />
 				</h:panelGrid>

@@ -13,9 +13,11 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "car.all", query = "Select c from Car c") })
@@ -32,6 +34,7 @@ public class Car {
 	private double volume;
 	private boolean agree;
 	private Date registration;
+	private int pin;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,7 +46,8 @@ public class Car {
 		this.id = id;
 	}
 
-	@Pattern(regexp = "[A-Z][a-z][a-z]*")
+	@Pattern(regexp = "[A-Z][a-z][a-z]*", message = "Musi zaczynac sie z wielkiej litery")
+	@Size(max = 5, message = "Za dlugie imie")
 	@NotNull
 	public String getFirstName() {
 		return firstName;
@@ -107,6 +111,7 @@ public class Car {
 		this.mark = mark;
 	}
 
+	@Max(value = 101)
 	public int getHp() {
 		return hp;
 	}
@@ -144,5 +149,14 @@ public class Car {
 	public void setRegistration(Date registration) {
 		this.registration = registration;
 	}
+
+	public int getPin() {
+		return pin;
+	}
+
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
 	
+
 }
