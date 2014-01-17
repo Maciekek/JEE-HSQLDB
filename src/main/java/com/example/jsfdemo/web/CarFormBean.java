@@ -23,7 +23,7 @@ public class CarFormBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String idNumber;
+
 	private String yob;
 
 	private Car car = new Car();
@@ -47,7 +47,7 @@ public class CarFormBean implements Serializable {
 
 	// Actions
 	public String addCar() {
-		cm.addCar(car);
+
 		return "showCars";
 		// return null;
 	}
@@ -82,6 +82,10 @@ public class CarFormBean implements Serializable {
 	public String editCar() {
 		cm.editCarDate(car);
 		return "showCars";
+	}
+
+	public String home() {
+		return "home";
 	}
 
 	// Validators
