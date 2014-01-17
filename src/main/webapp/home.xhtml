@@ -9,17 +9,17 @@
 			dkgfsjhd</p>
 
 		<div class="images">
-			<h:form id="login">
+			<h:form method="post" action="j_security_check">
 				<h:outputLabel for="login" value="Login" />
-				<p:inputText id="login" value="#{userBean.user.login}" />
+				<h:inputText type="text" name="j_login" />
 
 				<h:outputLabel for="password" value="Haslo" />
-				<p:inputText id="password" value="#{userBean.user.password}" />
+				<h:inputText type="text" name="j_password" />
 
 
 				<h:outputLabel for="login" value="Login" />
 				<h:commandButton value="submit" type="submit"
-					action="#{userBean.logIn}" />
+					 />
 			</h:form>
 		</div>
 		<h:messages />

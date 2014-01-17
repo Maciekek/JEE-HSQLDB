@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glassfish-web-app >
+
+
+<!--  Admin rule -->
+	<security-role-mapping>
+		<role-name>DEFAULT</role-name>
+		<group-name>DEFAULT</group-name>
+	</security-role-mapping>
+
+</glassfish-web-app>
