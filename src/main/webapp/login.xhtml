@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" template="/myTemplate.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+
+		<h3>Login here</h3>
+		<h:form id="login-form">
+			<h:outputText value="username:" />
+			<h:inputText value="#{loginBean.user.login}" id="login" />
+			<br />
+			<h:outputText value="password:" />
+			<h:inputSecret value="#{loginBean.user.password}" id="password" />
+			<br />
+			<h:commandButton id="button" value="Login"
+				action="#{loginBean.doLogin}" />
+			<br />
+			<h:messages />
+			<br />
+		</h:form>
+	</ui:define>
+</ui:composition>

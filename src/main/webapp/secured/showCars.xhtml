@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/myTemplate.xhtml" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<h:form>
+			<p:carousel id="basicCarousel" itemStyle="width:1%" value="#{carBean.allCars}" var="item"
+				itemStyleClass="carItem">
+				<f:facet name="header">  
+            #{msg.car}
+    </f:facet>
+				<h:panelGrid columns="1" itemStyle="width:50%" cellpadding="5">
+					<p:graphicImage value="/images/#{item.imagePath}"/>   
+					<h:outputText value="#{msg.name}: #{item.name}" />
+					<h:outputText value="#{msg.mark}: #{item.mark}" />
+					<h:outputText value="#{msg.vin}: #{item.vin}" />
+					<h:outputText value="#{msg.hp}: #{item.hp}" />
+					<p:inputText id="id" value="#{loginBean.carId}">
+						
+					</p:inputText>
+				
+				<h:commandButton value="Wypozycz mnie!"  action="#{carBean.rentCar}"></h:commandButton>
+				
+				</h:panelGrid>
+				
+				
+				
+				<f:facet name="footer">
+					<h:outputText value="Aktualnie jest dostępnych:   aut" />
+				</f:facet>
+			</p:carousel>
+
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

@@ -14,12 +14,14 @@ public class UserManager {
 	@PersistenceContext
 	EntityManager em;
 
+	private MyUser user;
+
 	public boolean checkLoginAndPassword(MyUser user) {
 		boolean value = false;
 		try {
 			MyUser userRetrieved = (MyUser) em.createNamedQuery("user.findByLogin")
 					.setParameter("login", user.getLogin()).getSingleResult();
-
+			setUser(user);
 			if (user.getPassword()
 					.equalsIgnoreCase(userRetrieved.getPassword())) {
 				value = true;
@@ -30,6 +32,20 @@ public class UserManager {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 		return value;
+	}
+
+	public MyUser getUser() {
+		return user;
+	}
+
+	public void setUser(MyUser user) {
+		this.user = user;
+	}
+
+	public void addUser(MyUser user2) {
+		user2.setId(null);
+		em.persist(user2);
+
 	}
 
 }

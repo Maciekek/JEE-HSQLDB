@@ -3,25 +3,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
+	template="/myTemplate.xhtml" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
-		<p>APka paKapasdasdlasldhfkjashbdfjlagsdfjhasdg fjhksdgf kjagfmas
-			dkgfsjhd</p>
+		
 
-		<div class="images">
-			<h:form id="login">
-				<h:outputLabel for="login" value="Login" />
-				<p:inputText id="login" value="#{userBean.user.login}" />
-
-				<h:outputLabel for="password" value="Haslo" />
-				<p:inputText id="password" value="#{userBean.user.password}" />
-
-
-				<h:outputLabel for="login" value="Login" />
-				<h:commandButton value="submit" type="submit"
-					action="#{userBean.logIn}" />
-			</h:form>
-		</div>
+		<center>
+			<h1>Witaj na stronie wypozyczalni samochodów! Wystarczy, że się zalogujesz i już możesz
+			wynając sobie samochód!</h1>
+			<p:commandLink value="Zaloguj"  action="#{navigationBean.toLogin}"></p:commandLink>
+		</center>
 		<h:messages />
 	</ui:define>
 </ui:composition>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UIInput;
@@ -16,6 +17,8 @@ import javax.inject.Named;
 
 import com.example.jsfdemo.domain.Car;
 import com.example.jsfdemo.service.CarManagerDateBase;
+import com.example.jsfdemo.service.RentManager;
+import com.example.jsfdemo.service.UserManager;
 
 @SessionScoped
 @Named("carBean")
@@ -23,14 +26,29 @@ public class CarFormBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	private String yob;
 
 	private Car car = new Car();
 	private ListDataModel<Car> cars = new ListDataModel<Car>();
 
 	@Inject
-	private CarManagerDateBase cm;
+	UserManager um;
+
+	@Inject
+	CarManagerDateBase cm;
+
+	@Inject
+	RentManager rm;
+
+	@ManagedProperty(value = "#{loginBean}")
+	private LoginBean injectedUser;
+
+
+	public String rentCar() {
+		Car carSelected = cars.getRowData();
+		rm.rentCar(injectedUser.getUserId(), carSelected.getId());
+		return null;
+	}
 
 	public Car getCar() {
 		return car;
@@ -54,15 +72,11 @@ public class CarFormBean implements Serializable {
 
 	public String clearBean() {
 		car.setName("");
-		car.setFirstName(null);
 		car.setHp(0);
 		car.setId(null);
-		car.setIdNumber(null);
-		car.setLastName(null);
 		car.setMark(null);
 		car.setName(null);
 		car.setVin(null);
-		car.setYob(null);
 		car.setVolume(0.0);
 		return "addSimple";
 	}
