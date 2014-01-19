@@ -6,31 +6,30 @@
 	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<h:form id="personform">
-			<p:panel id="edicat" header="#{msg.editDate}">
+			<p:panel id="panel" header="Dodaj pracownika">
+
 				<h:panelGrid columns="3">
 
-				
-					<h:outputLabel for="name" value="#{msg.name}" />
-					<p:inputText id="name" value="#{carBean.car.name}">
+
+					<h:outputLabel for="name" value="Imie" />
+					<p:inputText id="name" value="#{employeeBean.employee.firstName}">
 					</p:inputText>
 					<p:message for="name" id="msgName"></p:message>
 
-					<h:outputLabel for="mark" value="#{msg.mark}" />
-					<p:inputText id="mark" value="#{carBean.car.mark}">
+					<h:outputLabel for="mark" value="Nazwisko" />
+					<p:inputText id="mark" value="#{employeeBean.employee.lastName}">
 					</p:inputText>
 					<p:message for="mark" id="msgMark"></p:message>
-
 				
 
-
-				</h:panelGrid>
-
-				<h:commandButton value="#{msg.carFormOKButton}"
-					action="#{carBean.editCar}" />
-
 				<h:panelGrid>
-					<h:messages showDetail="#{true}" showSummary="#{false}" />
+					<h:messages id="messages" showDetail="#{true}"
+						showSummary="#{false}" />
 				</h:panelGrid>
+
+				</h:panelGrid>
+				<h:commandButton value="#{msg.carFormOKButton}"
+					action="#{employeeBean.addEmployee}" />
 			</p:panel>
 		</h:form>
 	</ui:define>

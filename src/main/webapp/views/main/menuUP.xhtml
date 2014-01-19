@@ -8,9 +8,17 @@
 		<p:menubar>
 			<p:submenu label="#{msg.add}">
 				<p:menuitem value="#{msg.car}" action="#{carBean.clearBean}"/>
+				<p:menuitem value="Pracownika" action="#{employeeBean.clearBean}"/>
+				<p:menuitem value="Telefon" action="#{phoneBean.clearBean}"/>
 			</p:submenu>
 			<p:submenu label="#{msg.show}">
-				<p:menuitem value="#{msg.all}" url="showCars.jsf" />
+				<p:menuitem value="Samochody" url="showCars.jsf" />
+				<p:menuitem value="Pracownicy" url="showEmployee.jsf" />
+				<p:menuitem value="Telefony" url="showPhone.jsf" />
+			</p:submenu>
+			<p:submenu label="Przydziel">
+				<p:menuitem value="Samochod pracownikowi" action="addCarToEmployee.jsf" />
+				<p:menuitem value="Telefon pracownikowi" action="addPhoneToEmployee.jsf" />
 			</p:submenu>
 			<p:submenu label="#{msg.change}">
 				<p:menuitem value="#{msg.theme}" action="#{themeBean.changeStyle}" />

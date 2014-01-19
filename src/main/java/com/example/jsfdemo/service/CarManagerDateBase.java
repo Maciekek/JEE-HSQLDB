@@ -30,7 +30,7 @@ public class CarManagerDateBase {
 	}
 
 	public void editCarDate(Car car) {
-		System.out.println(car.getHp());
+
 		Car carRetrieved = em.find(Car.class, car.getId());
 		carRetrieved = car;
 		em.merge(carRetrieved);

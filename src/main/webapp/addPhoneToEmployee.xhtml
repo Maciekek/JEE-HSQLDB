@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+		<h:form id="personform">
+			<p:panel id="panel" header="#{msg.addCar}">
+
+				<h:panelGrid columns="2">
+					<h:outputText value=" Employee " />
+					
+					<h:selectOneMenu value="#{phoneToEmployee.employeeId}">
+						<f:selectItems value="#{phoneToEmployee.allEmployees}"
+							var="employee" itemValue="#{employee.id}"
+							itemLabel="#{employee.firstName} #{employee.lastName}" />
+					</h:selectOneMenu>
+
+					<h:outputText value=" Phone " />
+					<h:selectOneMenu value="#{phoneToEmployee.phoneId}">
+						<f:selectItems value="#{phoneToEmployee.availablePhones}" var="phone"
+							itemValue="#{phone.id}" itemLabel="#{phone.model} #{phone.number}" />
+					</h:selectOneMenu>
+
+
+				</h:panelGrid>
+
+				<h:commandButton value="Przydziel"
+					action="#{phoneToEmployee.addPhoneToEmployee}" />
+
+				<h:panelGrid>
+					<h:messages id="messages" showDetail="#{true}"
+						showSummary="#{false}" />
+				</h:panelGrid>
+
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

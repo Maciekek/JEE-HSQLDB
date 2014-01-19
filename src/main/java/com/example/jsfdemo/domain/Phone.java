@@ -9,15 +9,14 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "car.ungiven", query = "Select c from Car c where c.status = false"),
-		@NamedQuery(name = "car.all", query = "Select c from Car c") })
-public class Car {
+		@NamedQuery(name = "phone.all", query = "Select p from Phone p"),
+		@NamedQuery(name = "phone.ungiven", query = "Select p from Phone p where p.status = false"), })
+public class Phone {
+
 	private Long id;
-
-
-	private String name = "";
-	private String mark = "";
-	private boolean status = false;
+	private String model;
+	private int number;	
+	private boolean status;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,20 +28,20 @@ public class Car {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getModel() {
+		return model;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
-	public String getMark() {
-		return mark;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setMark(String mark) {
-		this.mark = mark;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 	public boolean isStatus() {
@@ -52,5 +51,5 @@ public class Car {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	
+
 }

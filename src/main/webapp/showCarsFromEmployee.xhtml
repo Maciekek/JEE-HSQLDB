@@ -8,22 +8,18 @@
 	<ui:define name="content">
 
 		<h:form>
-			<p:carousel id="basicCarousel" value="#{carBean.allCars}" var="item"
+			<p:carousel id="basicCarousel" value="#{employeeBean.ownedCar}" var="item"
 				itemStyleClass="carItem">
 				<f:facet name="header">  
             #{msg.car}
     </f:facet>
 				<h:panelGrid columns="1" style="width:100%" cellpadding="3">
-
+				
 					<h:outputText value="#{msg.name}: #{item.name}" />
 
 					<h:outputText value="#{msg.mark}: #{item.mark}" />
-
 					
-					<h:commandButton value="#{msg.delete}"
-						action="#{carBean.deleteCar}"></h:commandButton>
-					<h:commandButton value="#{msg.edit}"
-						action="#{carBean.selectCarToEdit}"></h:commandButton>
+					
 				</h:panelGrid>
 				<f:facet name="footer">
 

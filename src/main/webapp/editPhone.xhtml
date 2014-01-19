@@ -11,12 +11,12 @@
 
 				
 					<h:outputLabel for="name" value="#{msg.name}" />
-					<p:inputText id="name" value="#{carBean.car.name}">
+					<p:inputText id="name" value="#{phoneBean.phone.model}">
 					</p:inputText>
 					<p:message for="name" id="msgName"></p:message>
 
 					<h:outputLabel for="mark" value="#{msg.mark}" />
-					<p:inputText id="mark" value="#{carBean.car.mark}">
+					<p:inputText id="mark" value="#{phoneBean.phone.number}">
 					</p:inputText>
 					<p:message for="mark" id="msgMark"></p:message>
 
@@ -26,7 +26,7 @@
 				</h:panelGrid>
 
 				<h:commandButton value="#{msg.carFormOKButton}"
-					action="#{carBean.editCar}" />
+					action="#{phoneBean.editPhone}" />
 
 				<h:panelGrid>
 					<h:messages showDetail="#{true}" showSummary="#{false}" />

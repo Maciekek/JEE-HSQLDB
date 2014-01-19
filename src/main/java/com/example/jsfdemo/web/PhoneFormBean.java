@@ -7,67 +7,64 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.example.jsfdemo.domain.Car;
-import com.example.jsfdemo.service.CarManagerDateBase;
+import com.example.jsfdemo.domain.Phone;
+import com.example.jsfdemo.service.PhoneManager;
+
 
 @SessionScoped
-@Named("carBean")
-public class CarFormBean implements Serializable {
+@Named("phoneBean")
+public class PhoneFormBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String idNumber;
-	private String yob;
-
-	private Car car = new Car();
-	private ListDataModel<Car> cars = new ListDataModel<Car>();
+	private Phone phone = new Phone();
+	private ListDataModel<Phone> phones = new ListDataModel<Phone>();
 
 	@Inject
-	private CarManagerDateBase cm;
+	private PhoneManager pm;
 
-	public Car getCar() {
-		return car;
+	public Phone getPhone() {
+		return phone;
 	}
 
-	public void setCar(Car car) {
-		this.car = car;
+	public void setPhone(Phone phone) {
+		this.phone = phone;
 	}
 
-	public ListDataModel<Car> getAllCars() {
-		cars.setWrappedData(cm.getAllCars());
-		return cars;
+	public ListDataModel<Phone> getAllPhone() {
+		phones.setWrappedData(pm.getAllPhones());
+		return phones;
 	}
 
 	// Actions
-	public String addCar() {
-		cm.addCar(car);
-		return "showCars";
+	public String addPhone() {
+		pm.addPhone(phone);
+		return "showPhone";
 		// return null;
 	}
 
 	public String clearBean() {
-		car.setName("");
-		car.setId(null);
-		car.setMark(null);
-		car.setName(null);
-		return "addSimple";
+		phone.setModel("");
+		phone.setId(null);
+		phone.setNumber(0);
+		return "addPhone";
 	}
 
-	public String deleteCar() {
-		Car carToDelete = cars.getRowData();
-		cm.deleteCar(carToDelete);
+	public String deletePhone() {
+		Phone phoneToDelete = phones.getRowData();
+		pm.phoneToDelete(phoneToDelete);
 		return null;
 	}
 
-	public String selectCarToEdit() {
-		Car carToEdit = cars.getRowData();
-		car = carToEdit;
-		return "editCar";
+	public String selectPhoneToEdit() {
+		Phone phoneToEdit = phones.getRowData();
+		phone = phoneToEdit;
+		return "editPhone";
 	}
 
-	public String editCar() {
-		cm.editCarDate(car);
-		return "showCars";
+	public String editPhone() {
+		pm.editPhoneDate(phone);
+		return "showPhone";
 	}
 
 	// Validators
