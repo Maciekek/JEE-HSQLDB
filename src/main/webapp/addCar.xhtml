@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/myTemplate.xhtml" xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+		<h:form id="personform">
+			
+				
+			
+				<h:panelGrid columns="2">
+
+					<h:outputLabel for="hp" value="hp" />
+					<p:inputText id="hp" value="#{carBean.car.hp}"/>
+
+					<h:outputLabel for="imagePath" value="imagePath" />
+					<p:inputText id="imagePath" value="#{carBean.car.imagePath}"/>
+					
+
+					<h:outputLabel for="loan" value="loan" />
+					<p:inputText id="loan" value="#{carBean.car.loan}"/>
+					
+					
+					<h:outputLabel for="mark" value="mark" />
+					<p:inputText id="mark" value="#{carBean.car.mark}"/>
+					
+					<h:outputLabel for="name" value="name" />
+					<p:inputText id="name" value="#{carBean.car.name}"/>
+					
+					<h:outputLabel for="vin" value="vin" />
+					<p:inputText id="vin" value="#{carBean.car.vin}"/>
+					
+					<h:outputLabel for="volume" value="volume" />
+					<p:inputText id="volume" value="#{carBean.car.volume}"/>
+
+				<h:commandButton value="#{msg.carFormOKButton}"
+					action="#{carBean.addCar}" />
+					
+				
+			</h:panelGrid>
+			
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

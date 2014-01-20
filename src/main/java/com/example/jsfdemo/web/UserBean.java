@@ -23,7 +23,6 @@ public class UserBean implements Serializable {
 	@Inject
 	UserManager um;
 
-
 	public MyUser getUser() {
 		return user;
 	}
@@ -41,7 +40,6 @@ public class UserBean implements Serializable {
 	}
 
 	// Actions
-
 	public boolean getLoggedIn() {
 		// TODO Auto-generated method stub
 		return loggedIn;
@@ -55,6 +53,5 @@ public class UserBean implements Serializable {
 		um.addUser(user);
 		return null;
 	}
-
 
 }

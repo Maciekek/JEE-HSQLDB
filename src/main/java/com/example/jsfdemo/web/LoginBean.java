@@ -1,7 +1,6 @@
 package com.example.jsfdemo.web;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,12 +9,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import com.example.jsfdemo.domain.Car;
 import com.example.jsfdemo.domain.MyUser;
-import com.example.jsfdemo.service.CarManagerDateBase;
-import com.example.jsfdemo.service.RentManager;
 import com.example.jsfdemo.service.UserManager;
-
 
 @ManagedBean
 @SessionScoped
@@ -23,12 +18,8 @@ public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 7765876811740798583L;
 
-	private String username;
-	private Long userId;
-	private String password;
 	private MyUser user = new MyUser();
 	private boolean loggedIn;
-	private Long carId;
 	private String loginActionText = "Zaloguj";
 
 	@ManagedProperty(value = "#{navigationBean}")
@@ -36,22 +27,10 @@ public class LoginBean implements Serializable {
 
 	@Inject
 	UserManager um;
-	
-	@Inject
-	CarManagerDateBase cm;
-
-	@Inject
-	RentManager rm;
-	
-	public String rentCar() {
-
-		rm.rentCar(1L, 1L);
-		return null;
-	}
 
 	public String doLogin() {
 		// Get every
-		setUserId(user.getId());
+		// setUserId(user.getId());
 		// Successful login
 		if (um.checkLoginAndPassword(user)) {
 			loggedIn = true;
@@ -86,10 +65,6 @@ public class LoginBean implements Serializable {
 		return "/login.jsf";
 	}
 
-	public List<Car> getAllCars() {
-		return cm.getAllCars();
-	}
-
 	public void changeLoginActionText() {
 
 		if (loggedIn)
@@ -107,23 +82,7 @@ public class LoginBean implements Serializable {
 
 		} else
 			changeLoginActionText();
-			return navigationBean.redirectToLogin();
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+		return navigationBean.redirectToLogin();
 	}
 
 	public boolean isLoggedIn() {
@@ -153,22 +112,5 @@ public class LoginBean implements Serializable {
 	public void setLoginActionText(String loginActionText) {
 		this.loginActionText = loginActionText;
 	}
-
-	public Long getCarId() {
-		return carId;
-	}
-
-	public void setCarId(Long carId) {
-		this.carId = carId;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
 
 }
