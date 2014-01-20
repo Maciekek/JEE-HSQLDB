@@ -3,17 +3,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
+	template="/myTemplate.xhtml" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
-		<p>#{msg.applicationInfo}</p>
+		
 
-		<div class="images">
-			<p:imageSwitch effect="turnDown">
-				<ui:repeat value="#{photoBean.images}" var="image">
-					<p:graphicImage value="/images/#{image}" />
-				</ui:repeat>
-			</p:imageSwitch>
-		</div>
-
+		<center>
+			<h1>Witaj na stronie wypozyczalni samochodów! Wystarczy, że się zalogujesz i już możesz
+			wynając sobie samochód!</h1>
+			<p:commandLink value="Zaloguj"  action="#{navigationBean.toLogin}"></p:commandLink>
+		</center>
+		<h:messages />
 	</ui:define>
 </ui:composition>
