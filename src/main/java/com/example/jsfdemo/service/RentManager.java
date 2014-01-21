@@ -14,11 +14,14 @@ public class RentManager {
 	EntityManager em;
 
 	public void rentCar(MyUser user, Long carId) {
-		// MyUser userLogged = em.find(MyUser.class, user.getLogin());
+		MyUser userFound = (MyUser) em.createNamedQuery("user.findByLogin")
+				.setParameter("login", user.getLogin()).getSingleResult();
+		
+		MyUser userLogged = em.find(MyUser.class, userFound.getId());
 		Car car = em.find(Car.class, carId);
-		// car.setLoan(true);
-		System.out.println(user.getImie());
-		user.getCars().add(car);
+
+
+		userLogged.getCars().add(car);
 	}
 
 }

@@ -19,7 +19,10 @@
 					<h:outputText value="#{msg.vin}: #{item.vin}" />
 					<h:outputText value="#{msg.hp}: #{item.hp}" />
 					
+					<h:outputText value="id #{loginBean.user.id}" />
 					<h:outputText value="login: #{loginBean.user.login}" />
+					<h:outputText value="imie: #{loginBean.user.imie}" />
+					<h:outputText value="haslo: #{loginBean.user.password}" />
 					
 					<p:commandButton value="Wypozycz mnie!"
 						actionListener="#{rentBean.loadSelectedCar}" action="#{rentBean.rentCar}"

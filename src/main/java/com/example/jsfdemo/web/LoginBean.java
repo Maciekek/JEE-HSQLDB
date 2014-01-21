@@ -29,12 +29,12 @@ public class LoginBean implements Serializable {
 	UserManager um;
 
 	public String doLogin() {
-		// Get every
-		// setUserId(user.getId());
-		// Successful login
+
 		if (um.checkLoginAndPassword(user)) {
 			loggedIn = true;
 			changeLoginActionText();
+
+
 			return navigationBean.redirectToCars();
 		}
 

@@ -80,8 +80,8 @@ public class RentBean implements Serializable {
 	public void loadSelectedCar(ActionEvent ae) {
 		String ids = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("carId").toString();
-		int id = Integer.parseInt(ids);
-		carId = (long) id;
+		Long id = Long.parseLong(ids);
+		carId = id;
 	}
 
 	public List<Car> getAllCars(){
