@@ -18,7 +18,9 @@
 					<h:outputText value="#{msg.mark}: #{item.mark}" />
 					<h:outputText value="#{msg.vin}: #{item.vin}" />
 					<h:outputText value="#{msg.hp}: #{item.hp}" />
-					<h:outputText value="login: #{loginBean.user.id}" />
+					
+					<h:outputText value="login: #{loginBean.user.login}" />
+					
 					<p:commandButton value="Wypozycz mnie!"
 						actionListener="#{rentBean.loadSelectedCar}" action="#{rentBean.rentCar}"
 						ajax="false">

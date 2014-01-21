@@ -31,6 +31,7 @@ public class RentBean implements Serializable {
 	@ManagedProperty(value = "#{loginBean.user}")
 	private MyUser injectedUser;
 
+
 	@Inject
 	RentManager rm;
 
@@ -71,6 +72,7 @@ public class RentBean implements Serializable {
 	}
 
 	public String rentCar() {
+
 		rm.rentCar(injectedUser, carId);
 		return null;
 	}

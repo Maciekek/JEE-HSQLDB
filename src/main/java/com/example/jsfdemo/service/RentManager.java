@@ -17,7 +17,7 @@ public class RentManager {
 		// MyUser userLogged = em.find(MyUser.class, user.getLogin());
 		Car car = em.find(Car.class, carId);
 		// car.setLoan(true);
-
+		System.out.println(user.getImie());
 		user.getCars().add(car);
 	}
 
