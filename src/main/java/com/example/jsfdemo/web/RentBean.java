@@ -56,7 +56,7 @@ public class RentBean implements Serializable {
 	}
 
 	public String rentCar() {
-		// rm.rentCar(loginValue.getId(), carId);
+
 		return null;
 	}
 	

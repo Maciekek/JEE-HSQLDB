@@ -18,7 +18,13 @@
 					<h:outputText value="#{msg.mark}: #{item.mark}" />
 					<h:outputText value="#{msg.vin}: #{item.vin}" />
 					<h:outputText value="#{msg.hp}: #{item.hp}" />
+					
+					<p:commandButton value="Wypozycz mnie!" action="#{rentBean.rentCar}"
+					 ajax="false" />
+				
 				</h:panelGrid>
+				
+				
 				
 				<f:facet name="footer">
 					<h:outputText value="Aktualnie jest dostępnych:   aut" />

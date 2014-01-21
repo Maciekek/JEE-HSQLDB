@@ -51,7 +51,7 @@ public class UserBean implements Serializable {
 
 	public String addUser() {
 		um.addUser(user);
-		return null;
+		return "login";
 	}
 
 }

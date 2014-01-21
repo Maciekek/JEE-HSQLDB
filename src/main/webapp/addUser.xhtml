@@ -2,32 +2,29 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	template="/myTemplate.xhtml" xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html" template="/myTemplate.xhtml"
+	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<h:form id="personform">
-			
-				
-			
-				<h:panelGrid columns="2">
+			<h:panelGrid columns="2">
 
-					<h:outputLabel for="login" value="login" />
-					<p:inputText id="login" value="#{userBean.user.login}"/>
+				<h:outputLabel for="login" value="login" />
+				<p:inputText id="login" value="#{userBean.user.login}" />
 
-					<h:outputLabel for="Password" value="Password" />
-					<p:inputText id="Password" value="#{userBean.user.password}"/>
-					
+				<h:outputLabel for="Password" value="Password" />
+				<p:inputText id="Password" value="#{userBean.user.password}" />
 
-					<h:outputLabel for="imie" value="imie" />
-					<p:inputText id="imie" value="#{userBean.user.imie}"/>
+
+				<h:outputLabel for="imie" value="imie" />
+				<p:inputText id="imie" value="#{userBean.user.imie}" />
 
 				<h:commandButton value="#{msg.carFormOKButton}"
 					action="#{userBean.addUser}" />
-					
-				
+
+
 			</h:panelGrid>
-			
-			
+
+
 		</h:form>
 	</ui:define>
 </ui:composition>

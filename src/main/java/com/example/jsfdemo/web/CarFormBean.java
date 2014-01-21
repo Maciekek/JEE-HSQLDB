@@ -38,7 +38,7 @@ public class CarFormBean implements Serializable {
 	// Actions
 	public String addCar() {
 		cm.addCar(car);
-		return "showCars";
+		return "secured/showCars";
 		// return null;
 	}
 
