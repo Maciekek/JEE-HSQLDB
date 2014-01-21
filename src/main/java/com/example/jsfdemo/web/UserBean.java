@@ -3,15 +3,15 @@ package com.example.jsfdemo.web;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import com.example.jsfdemo.domain.MyUser;
 import com.example.jsfdemo.service.UserManager;
 
 @SessionScoped
-@Named("userBean")
+@ManagedBean(name = "userBean")
 public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

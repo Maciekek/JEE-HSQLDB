@@ -15,7 +15,7 @@ import com.example.jsfdemo.service.RentManager;
 import com.example.jsfdemo.service.UserManager;
 
 @SessionScoped
-@ManagedBean
+@ManagedBean(name = "rentBean")
 public class RentBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
