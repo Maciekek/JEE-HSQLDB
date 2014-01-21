@@ -21,6 +21,7 @@ public class MyUser {
 	private String login;
 	private String password;
 	private String imie;
+	private String test = "assad";
 	private List<Car> cars = new ArrayList<Car>();
 
 	@Id
@@ -64,6 +65,14 @@ public class MyUser {
 
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
+	}
+
+	public String getTest() {
+		return test;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
 	}
 
 }

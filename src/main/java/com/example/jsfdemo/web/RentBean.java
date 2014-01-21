@@ -26,7 +26,7 @@ public class RentBean implements Serializable {
 	@Inject
 	CarManagerDateBase cm;
 
-	@ManagedProperty(value = "#{userBean.user}")
+	@ManagedProperty(value = "#{loginBean.user}")
 	private MyUser injectedUser;
 
 	@Inject

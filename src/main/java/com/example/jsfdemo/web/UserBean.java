@@ -17,6 +17,7 @@ public class UserBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private boolean loggedIn;
+
 	private MyUser user = new MyUser();
 	private ListDataModel<MyUser> users = new ListDataModel<MyUser>();
 

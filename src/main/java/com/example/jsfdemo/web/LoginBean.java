@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import com.example.jsfdemo.domain.MyUser;
 import com.example.jsfdemo.service.UserManager;
 
-@ManagedBean
+@ManagedBean(name = "loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
 
