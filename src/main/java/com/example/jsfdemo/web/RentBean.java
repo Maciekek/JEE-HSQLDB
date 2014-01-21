@@ -4,16 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import com.example.jsfdemo.domain.Car;
+import com.example.jsfdemo.domain.MyUser;
 import com.example.jsfdemo.service.CarManagerDateBase;
 import com.example.jsfdemo.service.RentManager;
 import com.example.jsfdemo.service.UserManager;
 
 @SessionScoped
-@Named("rentBean")
+@ManagedBean
 public class RentBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -23,6 +25,9 @@ public class RentBean implements Serializable {
 	
 	@Inject
 	CarManagerDateBase cm;
+
+	@ManagedProperty(value = "#{userBean.user}")
+	private MyUser injectedUser;
 
 	@Inject
 	RentManager rm;
@@ -55,8 +60,16 @@ public class RentBean implements Serializable {
 		this.login = login;
 	}
 
-	public String rentCar() {
+	public MyUser getInjectedUser() {
+		return injectedUser;
+	}
 
+	public void setInjectedUser(MyUser injectedUser) {
+		this.injectedUser = injectedUser;
+	}
+
+	public String rentCar() {
+		rm.rentCar(injectedUser.getId(), 52L);
 		return null;
 	}
 	
