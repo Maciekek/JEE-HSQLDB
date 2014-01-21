@@ -6,6 +6,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 import com.example.jsfdemo.domain.Car;
@@ -69,10 +71,17 @@ public class RentBean implements Serializable {
 	}
 
 	public String rentCar() {
-		rm.rentCar(injectedUser.getId(), 52L);
+		rm.rentCar(injectedUser, carId);
 		return null;
 	}
 	
+	public void loadSelectedCar(ActionEvent ae) {
+		String ids = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("carId").toString();
+		int id = Integer.parseInt(ids);
+		carId = (long) id;
+	}
+
 	public List<Car> getAllCars(){
 		return cm.getAllCars();
 	}

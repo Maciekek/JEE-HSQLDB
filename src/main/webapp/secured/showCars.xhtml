@@ -19,17 +19,19 @@
 					<h:outputText value="#{msg.vin}: #{item.vin}" />
 					<h:outputText value="#{msg.hp}: #{item.hp}" />
 					<h:outputText value="login: #{loginBean.user.id}" />
-					<p:commandButton value="Wypozycz mnie!" action="#{rentBean.rentCar}" 
-					 ajax="false" />
-				
+					<p:commandButton value="Wypozycz mnie!"
+						actionListener="#{rentBean.loadSelectedCar}" action="#{rentBean.rentCar}"
+						ajax="false">
+						<f:param name="carId" value="#{item.id}" />
+					</p:commandButton>
 				</h:panelGrid>
-				
-				
-				
+
+
+
 				<f:facet name="footer">
 					<h:outputText value="Aktualnie jest dostępnych:   aut" />
 				</f:facet>
-				
+
 			</p:carousel>
 		</h:form>
 	</ui:define>

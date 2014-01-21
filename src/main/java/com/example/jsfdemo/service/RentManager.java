@@ -13,8 +13,8 @@ public class RentManager {
 	@PersistenceContext
 	EntityManager em;
 
-	public void rentCar(Long userId, Long carId) {
-		MyUser user = em.find(MyUser.class, userId);
+	public void rentCar(MyUser user, Long carId) {
+		// MyUser userLogged = em.find(MyUser.class, user.getLogin());
 		Car car = em.find(Car.class, carId);
 		// car.setLoan(true);
 
