@@ -46,7 +46,7 @@ public class RentManager {
 		Car car = em.find(Car.class, carId);
 
 		car.setLoan(false);
-		userLogged.getCars().remove(car.getId());
+		userLogged.getCars().remove(car);
 
 	}
 

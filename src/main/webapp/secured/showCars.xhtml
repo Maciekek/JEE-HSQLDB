@@ -51,11 +51,9 @@
 					<p:graphicImage value="/images/#{car.imagePath}" />
 					<h:outputText value="#{msg.name}: #{car.name}" />
 					<h:form>
-						<h:outputText value="#{msg.name}: #{car.id}" />
-						
 						<p:commandButton value="Zwróc samochód"
 							actionListener="#{rentBean.loadSelectedCar}"
-							action="#{rentBean.rentCar}" ajax="false">
+							action="#{rentBean.unRentCar}" ajax="false">
 							<f:param name="carId" value="#{car.id}" />
 						</p:commandButton>
 					</h:form>
