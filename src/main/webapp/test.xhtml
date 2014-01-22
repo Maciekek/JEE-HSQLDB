@@ -3,7 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/templates/default.xhtml" xmlns:p="http://primefaces.org/ui">
+	template="myTemplate.xhtml" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<h:form id="form">
 
@@ -11,25 +11,24 @@
 
 				
 
-				<h:panelGrid columns="3">
-					<h:outputLabel for="firstname" value="Firstname: *" />
-					<p:inputText id="firstname" value="#{personBean.firstname}"
-						required="true" >
-						<p:ajax update="msgName" event="blur" />
-					</p:inputText>
-					<p:message for="firstname" id="msgName" />
-
-					<h:outputLabel for="surname" value="Surname: *" />
-					<p:inputText id="surname" value="#{personBean.surname}"
-						 required="true" >
-						<p:ajax update="msgSurname" event="blur" />
-					</p:inputText>
-					<p:message for="surname" id="msgSurname" />
-
+				
+		<p:carousel id="smallCarousel" value="#{rentBean.rentedCars}"
+			var="car" itemStyleClass="carItem" numVisible="1">
+			<h:panelGrid columns="1" style="width:100%" cellpadding="5">
+				<f:facet name="header">Twoje wypozyczenia</f:facet>
+				<h:panelGrid columns="1" itemStyle="width:50%" cellpadding="5">
+					<p:graphicImage value="/images/#{car.imagePath}" />
+					<h:outputText value="#{msg.name}: #{car.name}" />
+					<h:form>
+						<p:commandButton value="Zwróc samochód"
+							actionListener="#{rentBean.loadSelectedCar}"
+							action="#{rentBean.rentCar}" ajax="false">
+							<f:param name="carId" value="#{item.id}" />
+						</p:commandButton>
+					</h:form>
 				</h:panelGrid>
-
-				<p:commandButton id="btn" value="Save" update="panel"
-					actionListener="#{personBean.savePerson}" />
+			</h:panelGrid>
+		</p:carousel>
 			</p:panel>
 
 		</h:form>

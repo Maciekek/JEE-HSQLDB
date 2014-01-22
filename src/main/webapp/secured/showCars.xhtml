@@ -9,7 +9,8 @@
 
 		<h:form>
 			<p:carousel id="basicCarousel" itemStyle="width:1%"
-				value="#{carBean.allCars}" var="item" itemStyleClass="carItem">
+				value="#{carBean.allCars}" var="item" itemStyleClass="carItem"
+				numVisible="2">
 				<f:facet name="header">#{msg.car}</f:facet>
 
 				<h:panelGrid columns="1" itemStyle="width:50%" cellpadding="5">
@@ -18,15 +19,10 @@
 					<h:outputText value="#{msg.mark}: #{item.mark}" />
 					<h:outputText value="#{msg.vin}: #{item.vin}" />
 					<h:outputText value="#{msg.hp}: #{item.hp}" />
-					
-					<h:outputText value="id #{loginBean.user.id}" />
-					<h:outputText value="login: #{loginBean.user.login}" />
-					<h:outputText value="imie: #{loginBean.user.imie}" />
-					<h:outputText value="haslo: #{loginBean.user.password}" />
-					
+
 					<p:commandButton value="Wypozycz mnie!"
-						actionListener="#{rentBean.loadSelectedCar}" action="#{rentBean.rentCar}"
-						ajax="false">
+						actionListener="#{rentBean.loadSelectedCar}"
+						action="#{rentBean.rentCar}" ajax="false">
 						<f:param name="carId" value="#{item.id}" />
 					</p:commandButton>
 				</h:panelGrid>
@@ -38,6 +34,34 @@
 				</f:facet>
 
 			</p:carousel>
+
+
+
+
 		</h:form>
+	</ui:define>
+
+	<ui:define name="menu">
+
+		<p:carousel id="smallCarousel" value="#{rentBean.rentedCars}"
+			var="car" itemStyleClass="carItem" numVisible="1">
+			<h:panelGrid columns="1" style="width:100%" cellpadding="5">
+				<f:facet name="header">Twoje wypozyczenia</f:facet>
+				<h:panelGrid columns="1" itemStyle="width:50%" cellpadding="5">
+					<p:graphicImage value="/images/#{car.imagePath}" />
+					<h:outputText value="#{msg.name}: #{car.name}" />
+					<h:form>
+						<h:outputText value="#{msg.name}: #{car.id}" />
+						
+						<p:commandButton value="Zwróc samochód"
+							actionListener="#{rentBean.loadSelectedCar}"
+							action="#{rentBean.rentCar}" ajax="false">
+							<f:param name="carId" value="#{car.id}" />
+						</p:commandButton>
+					</h:form>
+				</h:panelGrid>
+			</h:panelGrid>
+		</p:carousel>
+
 	</ui:define>
 </ui:composition>

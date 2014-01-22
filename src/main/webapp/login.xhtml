@@ -8,17 +8,13 @@
 
 		<h3>Login here</h3>
 		<h:form id="login-form">
-			<h:outputText value="username:" />
-			<h:inputText value="#{loginBean.user.login}" id="login" />
-			<br />
-			<h:outputText value="password:" />
-			<h:inputSecret value="#{loginBean.user.password}" id="password" />
-			<br />
-			<h:commandButton id="button" value="Login"
+			<p:outputLabel value="username:" />
+			<p:inputText value="#{loginBean.user.login}" id="login" />
+			<p:outputLabel value="password:" />
+			<p:inputText type="password" value="#{loginBean.user.password}" id="password" />
+			<p:commandButton id="button" value="Login"
 				action="#{loginBean.doLogin}" />
-			<br />
-			<h:messages />
-			<br />
+			<p:messages />
 		</h:form>
 	</ui:define>
 </ui:composition>

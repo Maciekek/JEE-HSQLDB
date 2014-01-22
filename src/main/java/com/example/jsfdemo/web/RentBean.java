@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 
 import com.example.jsfdemo.domain.Car;
@@ -21,6 +22,7 @@ import com.example.jsfdemo.service.UserManager;
 public class RentBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private ListDataModel<Car> cars = new ListDataModel<Car>();
 
 	@Inject
 	UserManager um;
@@ -74,9 +76,14 @@ public class RentBean implements Serializable {
 	public String rentCar() {
 
 		rm.rentCar(injectedUser, carId);
-		return null;
+		return "showCars";
 	}
 	
+	public String unRentCar() {
+		rm.unRentCar(injectedUser, carId);
+		return "showCars";
+	}
+
 	public void loadSelectedCar(ActionEvent ae) {
 		String ids = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("carId").toString();
@@ -87,5 +94,20 @@ public class RentBean implements Serializable {
 	public List<Car> getAllCars(){
 		return cm.getAllCars();
 	}
+
+
+	public ListDataModel<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(ListDataModel<Car> cars) {
+		this.cars = cars;
+	}
+
+	public ListDataModel<Car> getRentedCars() {
+		cars.setWrappedData(rm.getAllCars(injectedUser));
+		return cars;
+	}
+
 
 }

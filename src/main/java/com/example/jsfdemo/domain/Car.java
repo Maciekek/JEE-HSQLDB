@@ -12,7 +12,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "car.all", query = "Select c from Car c") })
+@NamedQueries({ @NamedQuery(name = "car.all", query = "Select c from Car c WHERE c.loan = false") })
 public class Car {
 	private Long id;
 	private String vin = "";

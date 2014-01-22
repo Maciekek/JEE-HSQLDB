@@ -21,6 +21,7 @@ public class LoginBean implements Serializable {
 	private MyUser user = new MyUser();
 	private boolean loggedIn;
 	private String loginActionText = "Zaloguj";
+	private String welcomeMessage = "";
 
 	@ManagedProperty(value = "#{navigationBean}")
 	private NavigationBean navigationBean;
@@ -33,7 +34,6 @@ public class LoginBean implements Serializable {
 		if (um.checkLoginAndPassword(user)) {
 			loggedIn = true;
 			changeLoginActionText();
-
 
 			return navigationBean.redirectToCars();
 		}
@@ -67,10 +67,13 @@ public class LoginBean implements Serializable {
 
 	public void changeLoginActionText() {
 
-		if (loggedIn)
+		if (loggedIn) {
 			loginActionText = "Wyloguj";
-		else
+			welcomeMessage = "Witaj " + user.getLogin() + "!";
+		} else {
 			loginActionText = "Zaloguj";
+			welcomeMessage = "";
+		}
 
 	}
 
@@ -78,6 +81,7 @@ public class LoginBean implements Serializable {
 		if (loggedIn) {
 			doLogout();
 			changeLoginActionText();
+			setWelcomeMessage("Witaj" + user.getLogin());
 			return navigationBean.redirectToLogin();
 
 		} else
@@ -111,6 +115,14 @@ public class LoginBean implements Serializable {
 
 	public void setLoginActionText(String loginActionText) {
 		this.loginActionText = loginActionText;
+	}
+
+	public String getWelcomeMessage() {
+		return welcomeMessage;
+	}
+
+	public void setWelcomeMessage(String welcomeMessage) {
+		this.welcomeMessage = welcomeMessage;
 	}
 
 }
