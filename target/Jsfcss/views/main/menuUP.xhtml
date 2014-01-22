@@ -10,13 +10,10 @@
 				<p:menuitem value="Samochod" url="/secured/showCars.jsf" />
 			</p:submenu>
 			<p:submenu label="Add">
-				<p:menuitem value="User" url="addUser.jsf" />
-				<p:menuitem value="Car" url="addCar.jsf" />
+				<p:menuitem value="User" url="/addUser.jsf" />
+				<p:menuitem value="Car" url="/addCar.jsf" />
 			</p:submenu>
-			<p:submenu label="#{msg.change}">
-				<p:menuitem value="#{msg.theme}" action="#{themeBean.changeStyle}" />
-			</p:submenu>
-			<p:menuitem value="#{msg.mainPage}" url="home.jsf" />
+			<p:menuitem value="#{msg.mainPage}" url="/home.jsf" />
 			<f:facet name="options">
 				<p:outputLabel id="myButton" value="#{loginBean.welcomeMessage}"/>
 				<p:commandButton value="#{loginBean.loginActionText} "  action="#{loginBean.changeLoginStatus}"/>

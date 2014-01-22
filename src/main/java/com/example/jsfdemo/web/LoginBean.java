@@ -81,7 +81,6 @@ public class LoginBean implements Serializable {
 		if (loggedIn) {
 			doLogout();
 			changeLoginActionText();
-			setWelcomeMessage("Witaj" + user.getLogin());
 			return navigationBean.redirectToLogin();
 
 		} else
