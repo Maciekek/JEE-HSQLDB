@@ -13,20 +13,22 @@
 
 					<h:outputLabel for="name" value="#{msg.name}" />
 					<p:inputText id="name" value="#{carBean.car.name}">
+						<p:ajax update="msgName" event="blur" />
 					</p:inputText>
 					<p:message for="name" id="msgName"></p:message>
 
 					<h:outputLabel for="mark" value="#{msg.mark}" />
 					<p:inputText id="mark" value="#{carBean.car.mark}">
+						<p:ajax update="msgMark" event="blur" />
 					</p:inputText>
 					<p:message for="mark" id="msgMark"></p:message>
 
-				
 
-				<h:panelGrid>
-					<h:messages id="messages" showDetail="#{true}"
-						showSummary="#{false}" />
-				</h:panelGrid>
+
+					<h:panelGrid>
+						<h:messages id="messages" showDetail="#{true}"
+							showSummary="#{false}" />
+					</h:panelGrid>
 
 				</h:panelGrid>
 				<h:commandButton value="#{msg.carFormOKButton}"

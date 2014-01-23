@@ -70,7 +70,12 @@ public class EmployeeFormBean implements Serializable {
 
 	public String deleteEmployee() {
 		Employee employeeToDelete = employees.getRowData();
-		em.employeeToDelete(employeeToDelete);
+		try {
+			em.employeeToDelete(employeeToDelete);
+
+		} catch (Exception e) {
+
+		}
 		return null;
 	}
 

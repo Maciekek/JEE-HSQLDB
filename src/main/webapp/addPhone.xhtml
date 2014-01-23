@@ -8,23 +8,22 @@
 		<h:form id="personform">
 			<p:panel id="panel" header="Dodaj telefon">
 
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="3">
 
 
 					<h:outputLabel for="name" value="Nazwa" />
 					<p:inputText id="name" value="#{phoneBean.phone.model}">
+						<p:ajax update="msgFirstName" event="blur" />
 					</p:inputText>
-
-					<h:outputLabel for="mark" value="Numer" />
-					<p:inputText id="mark" value="#{phoneBean.phone.number}">
+					<p:message for="name" id="msgFirstName"></p:message>
+					
+					<h:outputLabel for="number" value="Numer" />
+					<p:inputText id="number" value="#{phoneBean.phone.number}">
+						<p:ajax update="msgNumber" event="blur" />
 					</p:inputText>
+					<p:message for="number" id="msgNumber"></p:message>
 
-				
-
-				<h:panelGrid>
-					<h:messages id="messages" showDetail="#{true}"
-						showSummary="#{false}" />
-				</h:panelGrid>
+					
 
 				</h:panelGrid>
 				<h:commandButton value="#{msg.carFormOKButton}"

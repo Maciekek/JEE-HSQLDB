@@ -11,21 +11,23 @@
 				<h:panelGrid columns="3">
 
 
-					<h:outputLabel for="name" value="Imie" />
-					<p:inputText id="name" value="#{employeeBean.employee.firstName}">
+					<h:outputLabel for="firstName" value="Imie" />
+					<p:inputText id="firstName" value="#{employeeBean.employee.firstName}">
+						<p:ajax update="msgFirstName" event="blur" />
 					</p:inputText>
-					<p:message for="name" id="msgName"></p:message>
+					<p:message for="firstName" id="msgFirstName"></p:message>
 
 					<h:outputLabel for="mark" value="Nazwisko" />
 					<p:inputText id="mark" value="#{employeeBean.employee.lastName}">
+						<p:ajax update="msgName" event="blur" />
 					</p:inputText>
-					<p:message for="mark" id="msgMark"></p:message>
-				
+					<p:message for="mark" id="msgName"></p:message>
 
-				<h:panelGrid>
-					<h:messages id="messages" showDetail="#{true}"
-						showSummary="#{false}" />
-				</h:panelGrid>
+
+					<h:panelGrid>
+						<h:messages id="messages" showDetail="#{true}"
+							showSummary="#{false}" />
+					</h:panelGrid>
 
 				</h:panelGrid>
 				<h:commandButton value="#{msg.carFormOKButton}"

@@ -52,7 +52,10 @@ public class PhoneFormBean implements Serializable {
 
 	public String deletePhone() {
 		Phone phoneToDelete = phones.getRowData();
-		pm.phoneToDelete(phoneToDelete);
+		try {
+			pm.phoneToDelete(phoneToDelete);
+		} catch (Exception e) {
+		}
 		return null;
 	}
 

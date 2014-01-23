@@ -55,7 +55,12 @@ public class CarFormBean implements Serializable {
 
 	public String deleteCar() {
 		Car carToDelete = cars.getRowData();
-		cm.deleteCar(carToDelete);
+		try {
+			cm.deleteCar(carToDelete);
+		} catch (Exception e) {
+
+		}
+		
 		return null;
 	}
 
@@ -66,7 +71,11 @@ public class CarFormBean implements Serializable {
 	}
 
 	public String editCar() {
-		cm.editCarDate(car);
+		try{
+			cm.editCarDate(car);
+		} catch (Exception e) {
+
+		}
 		return "showCars";
 	}
 
